@@ -1,5 +1,8 @@
 import React from 'react'
 import {FontAwesomeIcon} from '@fontawesome/react-fontawesome';
+import {faBars} from '@fontawesome/free-solid-svg-icons';
+
+
 
 const Nav = () => {
 
