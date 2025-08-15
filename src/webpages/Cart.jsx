@@ -49,7 +49,7 @@ const Cart = ({ cart, onRemove, changeQuantity }) => {
                                                     onChange={(event) => changeQuantity(book, event.target.value)}
                                                 />
                                             </div>
-                                            <div className="cart__book--price">${((book.salePrice || book.originalPrice) * book.quantity).toFixed(2)}</div>
+                                            <div className="cart__book--price-final">${((book.salePrice || book.originalPrice) * book.quantity).toFixed(2)}</div>
                                         </div>
                                     );
                                 })}
