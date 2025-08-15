@@ -20,7 +20,6 @@ function addToCart(book) {
     }
 }
 
-
 function removeFromCart(bookId) {
   setCart(cart.filter(book => book.id !== bookId));
 }

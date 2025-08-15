@@ -5,27 +5,27 @@ import Price from "./Price.jsx";
 import React, {useState,  useEffect, useRef} from 'react';
 
 const Book = ({book}) => {
-const [img, setImg] = useState ();
-
+const [img, setImg] = useState(null);
 const mountedRef= useRef(true);
 
 useEffect(() => {
   const image = new Image();
   image.src = book.url;
   image.onload = () => {
-    setTimeout(() =>{
-      if(mountedRef.current)
-      setImg(image);
-    },300);
-  };
-  return () => {
-    //when the component unmounts
+    setTimeout(() => {
+      if (mountedRef.current){
+        setImg(image);
+      }
+      },300);
+    };
+
+ return () => {
+    // When the component unmounts, remove the onload event listener
+    image.onload = null;
     mountedRef.current = false;
-
-  }
-})
-
-  
+  };
+}, [book.url]);
+ 
 
     return (
         <div className="book">
@@ -54,10 +54,9 @@ useEffect(() => {
             <div className="skeleton book__rating--skeleton"></div>
             <div className="skeleton book__price--skeleton"></div>            
           </>
-        )
-      }
+        )}
     </div>
     );
-}
+};
 
 export default Book;
