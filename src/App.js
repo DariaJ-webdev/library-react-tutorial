@@ -1,6 +1,6 @@
 import Footer from "./Components/Footer.jsx";
 import Nav from "./Components/Nav.jsx";
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Start from "./webpages/Start.jsx";
 import Books from "./webpages/Books.jsx";
 import {books} from"./Data.js";
@@ -42,18 +42,20 @@ function changeQuantity(book, quantity) {
 useEffect(() => {
   console.log(cart)
  }, [cart])
-
+ 
   return (
-   <Router>
-     <div className="App">
-      <Nav cart={cart} />
-      <Route path="/" exact component={Start} />
-      <Route path="/books" exact render={() => <Books books={books} />} />
-      <Route path="/books/:id" render={() => <BookInfo books={books} addToCart={addToCart} cart={cart} />} /> 
-      <Route path="/cart" render={() => <Cart books={books} cart={cart} changeQuantity={changeQuantity} onRemove={removeFromCart} />} />
-      <Footer />
-    </div>
-   </Router>
+    <Router>
+      <div className="App">
+        <Nav cart={cart} />
+        <Routes>
+          <Route path="/" element={<Start />} />
+          <Route path="/books" element={<Books books={books} />} />
+          <Route path="/books/:id" element={<BookInfo books={books} addToCart={addToCart} cart={cart} />} /> 
+          <Route path="/cart" element={<Cart books={books} cart={cart} changeQuantity={changeQuantity} onRemove={removeFromCart} />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

@@ -1,32 +1,27 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Rating from "./Rating.jsx";
 import Price from "./Price.jsx";
-import React, {useState,  useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-const Book = ({book}) => {
+const Book = ({ book }) => {
 const [img, setImg] = useState(null);
-const mountedRef= useRef(true);
-
+const mountedRef = useRef(true);
 useEffect(() => {
-  const image = new Image();
-  image.src = book.url;
-  image.onload = () => {
-    setTimeout(() => {
-      if (mountedRef.current){
-        setImg(image);
-      }
-      },300);
-    };
+const image = new Image();
+image.src = book.url;
+image.onload = () => {
+setTimeout(() => {
+if (mountedRef.current) {
+setImg(image);
+}
+}, 300);
+};
 
- return () => {
-    // When the component unmounts, remove the onload event listener
-    image.onload = null;
-    mountedRef.current = false;
-  };
+return () => {
+mountedRef.current = false;
+};
 }, [book.url]);
- 
-
     return (
         <div className="book">
       {img ? (
@@ -36,13 +31,11 @@ useEffect(() => {
                 <img 
                   src={img.src} 
                   alt=""
-                  className="book__img" 
-                 
-                />
+                  className="book__img"/>
               </figure>
             </Link>
             <div className="book__title">
-              <Link to={`/books/${book.id}`} className="book__title--link">
+                <Link to={`/books/${book.id}`} className="book__title--link">
                 {book.title}
               </Link>
             </div>
