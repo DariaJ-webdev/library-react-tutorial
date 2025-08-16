@@ -21,7 +21,10 @@ nav {
 }
 
 img {
-  width: 100%;
+width: 70%;
+margin-left: 80px;
+height:auto;
+flex-shrink: 1;
 }
 
 p {
